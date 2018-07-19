@@ -1,8 +1,17 @@
 <?php
+session_start();
 
-$start = $_GET["start"];
-$size = $_GET["size"];
-$start_1 = $start+1;
+$sess = [
+'start' => $_GET["start"],
+'size' => $_GET["size"],
+'time' => time()
+];
+
+
+$start = $sess["start"];
+$size = $sess["start"];
+
+file_put_contents("include/sess/".session_id(), json_encode($sess));
 
 echo "
 <html>
@@ -37,3 +46,5 @@ echo "
 </body>
 </html>
 ";
+
+var_dump(session_id());

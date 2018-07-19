@@ -1,31 +1,22 @@
 <?php
+session_start();
+
+$sess = json_decode(file_get_contents('include/sess/'.session_id()));
+
 date_default_timezone_set('America/Sao_Paulo');
-# $Id: ohlc2.php 1001 2011-08-08 02:22:55Z lbayuk $
-# Testing phplot - OHLC - all up/down combos - candlesticks
 if (empty($plot_type)) $plot_type = 'candlesticks';
 require_once 'phplot/phplot.php';
-/*
-Testing all cases as follows. There are 16 combinations but 4 duplicates
-L = Low, O = Open, C = Close, H = High.
-Data order:  Open, High, Low, Close
-*/
 
 $csv = file_get_contents("win2.csv");
 $csv = explode("\n", $csv);
 
 $ohlcv = array();
 
-
 if($_GET["start"] =="") $start_from_index = 0;
 else $start_from_index = $_GET["start"];
 
-
-
-if($_GET["size"] == "") $size = 40;
-else $size = $_GET["size"];
-
-
-
+if($sess["size"] == "") $size = 40;
+else $size = $sess["size"];
 
 for ($i=$start_from_index; $i < $start_from_index+$size; $i++) {
 

@@ -13,7 +13,7 @@ document.getElementById('btn_buy').style.visibility = 'hidden';
 }
 
 function NewChart() {
-    document.getElementById("chart").src = "ohlc.php?start=" + increm + "&size=" + size_c;
+    document.getElementById("chart").src = "ohlc.php?start=" + increm ;
     increm = increm + 1;
     document.getElementById("counter").innerHTML = (increm - start_js);
 
