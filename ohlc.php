@@ -11,23 +11,17 @@ else $size = $sess->size;
 
 $start = $_GET['start'];
 
-
 $data_gen = new Data_Gen($start);
 $ohlcv = $data_gen->ohlcv;
-
-
 
 $data = array();
 $data2 = array();
 
 foreach ($ohlcv as $key => $value) {
-
   $j++;
-
   $data[] =  array($j,$key,$value["open"],$value["high"],$value["low"],$value["close"]);
   $data2[] =  array('',$value["volume_ticks"]);
   $data2_volume[] = $value["volume_ticks"];
-
 }
 
 if($size == 40) {
