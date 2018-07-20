@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 include 'include/include.php';
 
 $start = rand(200,700);
