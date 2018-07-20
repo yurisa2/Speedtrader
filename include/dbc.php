@@ -10,8 +10,6 @@ class STdb
     $this->obj_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $this->ticks = new StdClass();
-
-    echo "construtor STdb PAI";
   }
 
   function select_ticks($symbol_id,$period,$start,$size)
@@ -39,7 +37,7 @@ class STdb
     return $result; //Colocar na documentaao que é funcao DUAL (array e objeto)
   }
 
-  public function return_min_id($symbol_id,$period)
+  public function return_min_total_id($symbol_id,$period)
   {
     $return = $this->obj_db->query("select * from ticks where
     symbol_id = '$symbol_id' and period = '$period'
@@ -60,6 +58,26 @@ class STdb
     ];
     return $ret;
   }
+
+  public function return_periods($symbol_id)
+  {
+    $result = $this->obj_db->query("select period from ticks where
+    symbol_id = '$symbol_id' group by period
+    ");
+
+    $result = $result->fetchall(PDO::FETCH_ASSOC);
+
+    return $result;
+  }
+
+  public function return_random($in_array)
+  {
+    $rand_key = array_rand($in_array);
+
+//STOPPED IN HERE
+    return $result;
+  }
+
 
 }
 

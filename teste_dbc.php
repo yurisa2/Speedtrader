@@ -8,6 +8,6 @@ error_reporting(E_ALL);
 echo "<pre>";
 
 $sess = new sess;
-// $sess2->create_db_sess();
-var_dump($sess);
+$periods = $sess->return_periods(2);
+var_dump($periods);
 exit;
