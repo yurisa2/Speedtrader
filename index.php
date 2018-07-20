@@ -1,8 +1,13 @@
 <?php
 session_start();
 
+include 'include/include.php';
+
+$start = rand(200,700);
+
+
 $sess = [
-'start' => $_GET["start"],
+'start' => $start,
 'size' => $_GET["size"],
 'time' => time()
 ];
@@ -32,8 +37,11 @@ echo "
 <img id=\"chart\" src=\"ohlc.php?start=$start&size=$size\"><br>
 
 <br>
+<div class=\"progress\" style=\"width: 300px\">
+  <div class=\"progress-bar progress-bar-striped bg-warning\" role=\"progressbar\" style=\"width: 0%\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"300\"></div>
+</div>
+<br>
 <button class=\"btn btn-warning btn-md\" onclick=\"Rolling()\" id=\"counter\">i</button>
-
 <button class=\"btn btn-success btn-md\" id=\"play\" onclick=\"Play()\">Play</button>
 <button class=\"btn btn-md\" id=\"stop\" onclick=\"Stop()\">Stop</button>
 <br>
@@ -41,10 +49,10 @@ echo "
 
 <button class=\"btn btn-primary btn-md\" id=\"btn_buy\" >Buy</button>
 <button class=\"btn btn-danger btn-md\" id=\"btn_sell\" >Sell</button>
+<br>
+<button class=\"btn btn-warning btn-md\" id=\"btn_close\" >Close Position</button>
 
 </center>
 </body>
 </html>
 ";
-
-var_dump(session_id());
