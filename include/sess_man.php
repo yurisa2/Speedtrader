@@ -1,21 +1,25 @@
 <?php
-
-class sess
+class sess extends STdb
 {
   function __construct()
   {
-    if(!file_exists("include/sess/".session_id()))
-    {
-      $sess_create = ['time' => time()];
-      file_put_contents("include/sess/".session_id(),json_encode($sess_create));
-    }
+    $this->session_id = session_id();
+    echo "construtor SESS ".  $this->session_id;
   }
 
+  function create_db_sess()
+  {
+    $session_id = session_id();
+    $start = 200;
+    $time = time();
+    $size = 40;
+    $symbol_id = '1';
+    $period = 'M1';
+
+    $return = $this->obj_db->query("insert into sessions (session_id,start,size,time,symbol_id,period) values
+    ('$session_id','$start','$size','$time','$symbol_id','$period')");
+  }
 }
-
-$sess = new sess;
-var_dump(session_id());
-
 
 
 ?>

@@ -1,13 +1,13 @@
 <?php
+include 'include/include.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include 'include/include.php';
 
 
 echo "<pre>";
 
-$dbc = new STdb();
-// $dbc->retorn_least_id(2,"M1");
-
-var_dump($dbc->return_min_id(1,"M1"));
+$sess = new sess;
+// $sess2->create_db_sess();
+var_dump($sess);
+exit;
