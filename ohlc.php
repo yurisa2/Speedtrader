@@ -27,8 +27,8 @@ $data2 = array();
 foreach ($ohlcv as $key => $value) {
   $j++;
   $data[] =  array($j,$key,$value["open"],$value["high"],$value["low"],$value["close"]);
-  $data2[] =  array('',$value["volume1"]);
-  $data2_volume[] = $value["volume1"];
+  $data2[] =  array('',$value["volume2"]);
+  $data2_volume[] = $value["volume2"];
 }
 
 if($size == 60) {

@@ -89,6 +89,16 @@ class STdb
     return $result;
   }
 
+  public function select_tick($tick_id)
+  {
+    $return = $this->obj_db->query("select * from ticks where
+    id = '$tick_id' ");
+
+    $result = $return->fetch(PDO::FETCH_ASSOC);
+
+    return $result;
+  }
+
 }
 
 ?>

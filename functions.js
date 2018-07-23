@@ -3,8 +3,9 @@ var increm = 0;
 var rolling;
 var size_c;
 
-function setStart(start,size) {
+function setStart(start,size,speed) {
 
+  speed_c = speed;
   start_js = start;
   increm = start;
   size_c = size;
@@ -16,7 +17,10 @@ function NewChart() {
   increm = increm + 1;
   document.getElementById("counter").innerHTML = (increm - start_js);
   $(".progress .progress-bar").css('width', (increm - start_js));
-  if((increm - start_js) == 12)
+
+  get_status(increm);
+
+  if((increm - start_js) == size_c)
   {
     document.getElementById("counter").innerHTML = "New Game";
 
@@ -29,7 +33,7 @@ function Play() {
   document.getElementById('stop').style.visibility = 'visible';
   show_commands();
 
-  rolling = setInterval(NewChart, 400);
+  rolling = setInterval(NewChart, speed_c);
 }
 
 function Stop() {
@@ -81,14 +85,28 @@ function the_end_session() {
 
 function get_extract() {
 
+  // var xmlhttp3 = new XMLHttpRequest();
+  //
+  // xmlhttp3.onreadystatechange = function() {
+  //   if (this.readyState == 4 && this.status == 200) {
+  //     document.getElementById("panel").innerHTML = this.responseText;
+  //   }
+  // };
+  //
+  // xmlhttp3.open("GET", "extract.php", true);
+  // xmlhttp3.send();
+}
+
+function get_status(increm) {
+
   var xmlhttp3 = new XMLHttpRequest();
 
   xmlhttp3.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("extract").innerHTML = this.responseText;
+      document.getElementById("panel").innerHTML = this.responseText;
     }
   };
 
-  xmlhttp3.open("GET", "extract.php", true);
+  xmlhttp3.open("GET", "status.php?increm=" + increm, true);
   xmlhttp3.send();
 }
