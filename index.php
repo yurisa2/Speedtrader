@@ -1,20 +1,30 @@
 <?php
 include 'include/include.php';
 
-$start = rand(200,700);
+// $start = rand(200,700);
+//
+//
+// $sess = [
+// 'start' => $start,
+// 'size' => $_GET["size"],
+// 'time' => time()
+// ];
+//
+//
+// $start = $sess["start"];
+// $size = $sess["start"];
+//
+// file_put_contents("include/sess/".session_id(), json_encode($sess));
 
+$sess = new sess;
+$session = $sess->select_db_sess();
+if(!$session)
+{
+  $sess->create_db_sess();
+$session = $sess->select_db_sess();
+}
 
-$sess = [
-'start' => $start,
-'size' => $_GET["size"],
-'time' => time()
-];
-
-
-$start = $sess["start"];
-$size = $sess["start"];
-
-file_put_contents("include/sess/".session_id(), json_encode($sess));
+$start = $session["start"];
 
 echo "
 <html>
@@ -32,7 +42,7 @@ echo "
 <center>
 
 
-<img id=\"chart\" src=\"ohlc.php?start=$start&size=$size\"><br>
+<img id=\"chart\" src=\"ohlc.php?start=$start\"><br>
 
 <br>
 <div class=\"progress\" style=\"width: 300px\">
@@ -49,6 +59,8 @@ echo "
 <button class=\"btn btn-danger btn-md\" id=\"btn_sell\" >Sell</button>
 <br>
 <button class=\"btn btn-warning btn-md\" id=\"btn_close\" >Close Position</button>
+<br>
+<div id=\"extract\">sera</div>
 
 </center>
 </body>

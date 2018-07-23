@@ -51,33 +51,43 @@ class STdb
 
     $result = $return->fetch(PDO::FETCH_ASSOC);
     $result2 = $return_count->fetch(PDO::FETCH_ASSOC);
+    $total_ticks = $result2["total_ticks"]-300;
 
     $ret = [
       'min_id' => $result["id"],
-      'total_ticks' => $result2["total_ticks"]
+      'total_ticks' =>$total_ticks
     ];
     return $ret;
   }
 
-  public function return_periods($symbol_id)
+  public function return_random()
   {
-    $result = $this->obj_db->query("select period from ticks where
-    symbol_id = '$symbol_id' group by period
+    $return = $this->obj_db->query("select * from ticks
+   group by symbol_id,period
     ");
 
-    $result = $result->fetchall(PDO::FETCH_ASSOC);
+    $result = $return->fetchall(PDO::FETCH_ASSOC);
+    $random_index = array_rand($result);
 
-    return $result;
+    $immet = $result[$random_index];
+
+    $return1 = array(
+      'symbol_id' => $immet["symbol_id"],
+      'period' => $immet["period"]
+
+    );
+    return $return1;
   }
 
-  public function return_random($in_array)
+  public function select_symbol($symbol_id)
   {
-    $rand_key = array_rand($in_array);
+    $return = $this->obj_db->query("select * from symbols where
+    id = '$symbol_id' ");
 
-//STOPPED IN HERE
+    $result = $return->fetch(PDO::FETCH_ASSOC);
+
     return $result;
   }
-
 
 }
 

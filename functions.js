@@ -4,6 +4,7 @@ var rolling;
 var size_c;
 
 function setStart(start,size) {
+
   start_js = start;
   increm = start;
   size_c = size;
@@ -15,15 +16,7 @@ function NewChart() {
   increm = increm + 1;
   document.getElementById("counter").innerHTML = (increm - start_js);
   $(".progress .progress-bar").css('width', (increm - start_js));
-  if((increm - start_js) == 30)
-  {
-    Stop();
-    document.getElementById('play').style.visibility = 'hidden';
-    document.getElementById('stop').style.visibility = 'hidden';
-    document.getElementById('btn_sell').style.visibility = 'hidden';
-    document.getElementById('btn_buy').style.visibility = 'hidden';
-    //COLOCAR RESUMO
-  }
+  if((increm - start_js) == 12) the_end_session();
 }
 
 function Play() {
@@ -59,4 +52,38 @@ function show_commands()
 
 function Rolling() {
   // document.getElementById("counter").innerHTML = rolling;
+}
+
+function get_new_session() {
+
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "operator.php?op=new_session", true);
+  xmlhttp.send();
+
+}
+
+function the_end_session() {
+
+  Stop();
+  document.getElementById('play').style.visibility = 'hidden';
+  document.getElementById('stop').style.visibility = 'hidden';
+  document.getElementById('btn_sell').style.visibility = 'hidden';
+  document.getElementById('btn_buy').style.visibility = 'hidden';
+  get_extract();
+
+  get_new_session();
+}
+
+function get_extract() {
+
+  var xmlhttp3 = new XMLHttpRequest();
+
+  xmlhttp3.onreadystatechange = function() {
+             if (this.readyState == 4 && this.status == 200) {
+               document.getElementById("extract").innerHTML = this.responseText;
+             }
+         };
+
+  xmlhttp3.open("GET", "extract.php", true);
+  xmlhttp3.send();
 }

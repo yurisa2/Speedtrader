@@ -3,16 +3,23 @@ session_start();
 require_once 'include/include.php';
 date_default_timezone_set('America/Sao_Paulo');
 
+$sess = new sess;
+$session = $sess->select_db_sess();
 
 if (empty($plot_type)) $plot_type = 'candlesticks';
 
-if($sess->size == "") $size = 40;
-else $size = $sess->size;
+if($session["size"] == "") $size = 20;
+else $size = $session["size"];
 
-$start = $_GET['start'];
+if(!isset($_GET['start'])) $start = $session["start"];
+else $start = $_GET["start"];
 
-$data_gen = new Data_Gen($start);
-$ohlcv = $data_gen->ohlcv;
+
+$ohlcv = $sess->select_ticks($session["symbol_id"],$session["period"],$start,$size);
+
+// var_dump($size);
+// exit;
+
 
 $data = array();
 $data2 = array();
@@ -24,7 +31,7 @@ foreach ($ohlcv as $key => $value) {
   $data2_volume[] = $value["volume_ticks"];
 }
 
-if($size == 40) {
+if($size == 60) {
   $plot_width = 1024;
   $plot_height = 540;
 }
