@@ -17,6 +17,7 @@ Start: $start <br>
 Size: $size <br>
 Symbol: ".$sess->select_symbol($symbol_id)["symbol"]."  <br>
 Name: ".$sess->select_symbol($symbol_id)["name"]." <br>
+Period: ".$period." <br>
 Tick size: ".$sess->select_symbol($symbol_id)["tick_size"]." <br>
 <pre>
 ";

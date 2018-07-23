@@ -17,7 +17,7 @@ else $start = $_GET["start"];
 
 $ohlcv = $sess->select_ticks($session["symbol_id"],$session["period"],$start,$size);
 
-// var_dump($size);
+// var_dump($ohlcv);
 // exit;
 
 
@@ -27,8 +27,8 @@ $data2 = array();
 foreach ($ohlcv as $key => $value) {
   $j++;
   $data[] =  array($j,$key,$value["open"],$value["high"],$value["low"],$value["close"]);
-  $data2[] =  array('',$value["volume_ticks"]);
-  $data2_volume[] = $value["volume_ticks"];
+  $data2[] =  array('',$value["volume1"]);
+  $data2_volume[] = $value["volume1"];
 }
 
 if($size == 60) {

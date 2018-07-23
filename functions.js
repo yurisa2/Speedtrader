@@ -16,7 +16,12 @@ function NewChart() {
   increm = increm + 1;
   document.getElementById("counter").innerHTML = (increm - start_js);
   $(".progress .progress-bar").css('width', (increm - start_js));
-  if((increm - start_js) == 12) the_end_session();
+  if((increm - start_js) == 12)
+  {
+    document.getElementById("counter").innerHTML = "New Game";
+
+    the_end_session();
+  }
 }
 
 function Play() {
@@ -79,10 +84,10 @@ function get_extract() {
   var xmlhttp3 = new XMLHttpRequest();
 
   xmlhttp3.onreadystatechange = function() {
-             if (this.readyState == 4 && this.status == 200) {
-               document.getElementById("extract").innerHTML = this.responseText;
-             }
-         };
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("extract").innerHTML = this.responseText;
+    }
+  };
 
   xmlhttp3.open("GET", "extract.php", true);
   xmlhttp3.send();

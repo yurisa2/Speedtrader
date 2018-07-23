@@ -49,7 +49,7 @@ echo "
   <div class=\"progress-bar progress-bar-striped bg-warning\" role=\"progressbar\" style=\"width: 0%\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"300\"></div>
 </div>
 <br>
-<button class=\"btn btn-warning btn-md\" onclick=\"Rolling()\" id=\"counter\">i</button>
+<button class=\"btn btn-warning btn-md\" onclick=\"window.location.reload(true);\" id=\"counter\"></button>
 <button class=\"btn btn-success btn-md\" id=\"play\" onclick=\"Play()\">Play</button>
 <button class=\"btn btn-md\" id=\"stop\" onclick=\"Stop()\">Stop</button>
 <br>
