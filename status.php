@@ -11,6 +11,7 @@ $session = $sess->select_db_sess();
 $increm = $_GET["increm"];
 
 $position = $deals->position_open();
+$position_level = $deals->position_level();
 
 $start = $session["start"];
 $size = $session["size"];
@@ -24,6 +25,7 @@ echo "
 Current: $increm <br>
 Date: ".date("Y-m-d H:i:s",$tick["time"])." O: ".$tick["open"]." - H: ".$tick["high"]." - L: ".$tick["low"]." - C:".$tick["close"]."<br>
 Position: ".$position["result"]." <br>
+Position: ".$position_level." <br>
 <pre>
 ";
  ?>

@@ -11,7 +11,7 @@ $size = $sess->select_db_sess()["size"];
 
 $position = $deals->position_open();
 
-if($position["result"] == 1)
+if($position["result"] != 0)
 {
   $btn_close = true;
   $btn_buy = false;

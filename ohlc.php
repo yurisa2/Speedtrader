@@ -28,7 +28,10 @@ foreach ($ohlcv as $key => $value) {
   $j++;
   $data[] =  array($j,$key,$value["open"],$value["high"],$value["low"],$value["close"]);
   $data2[] =  array('',$value["volume2"]);
+  $op_level[] =  array('',"3599");
   $data2_volume[] = $value["volume2"];
+
+
 }
 
 if($size == 60) {
@@ -72,6 +75,15 @@ $plot->SetYDataLabelPos('none');     // Turn off Y data labels
 if (method_exists($plot, 'TuneYAutoRange'))
 $plot->TuneYAutoRange(0); // Suppress Y zero magnet (PHPlot >= 6.0.0)
 $plot->DrawGraph();
+
+// $plot->SetDataType('text-data');
+// $plot->SetDataValues($data3);
+// $plot->SetLineStyles('dashed');
+// $plot->SetLineWidths('5');
+// $plot->SetDataColors(array('red'));
+// $plot->SetPlotType('lines');
+// $plot->DrawGraph();
+
 
 $plot->SetPlotAreaPixels(NULL, $plot_height, NULL, $plot_height * 0.8);
 
