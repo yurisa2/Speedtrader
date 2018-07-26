@@ -16,14 +16,37 @@ include 'include/include.php';
 //
 // file_put_contents("include/sess/".session_id(), json_encode($sess));
 
+$speed = $speed_base;
+$n_candles = $n_candles_base;
+
 $sess = new sess;
-$session = $sess->select_db_sess();
-if(!$session)
+// $session = $sess->select_db_sess();
+// if(!$session)
 {
   $sess->create_db_sess();
 $session = $sess->select_db_sess();
 }
 
+if($session["period"] == M1)
+{
+  $speed = $speed_base /2;
+  $n_candles = $n_candles_base * 2;
+}
+if($session["period"] == M5)
+{
+  $speed = $speed_base;
+  $n_candles = $n_candles_base;
+}
+if($session["period"] == M10)
+{
+  $speed = $speed_base * 2;
+    $n_candles = $n_candles_base /2;
+}
+if($session["period"] == M15)
+{
+  $speed = $speed_base * 3;
+  $n_candles = $n_candles_base /3;
+}
 $start = $session["start"];
 
 echo "
@@ -40,17 +63,19 @@ echo "
 <body onload=\"setStart($start,$n_candles,$speed)\">
 <center>
 
-
+<div id=\"theater\">
 <img id=\"chart\" src=\"ohlc.php?start=$start\"><br>
+</div>
 
 <br>
-<div class=\"progress\" style=\"width: 300px\">
-  <div class=\"progress-bar progress-bar-striped bg-warning\" role=\"progressbar\" style=\"width: 0%\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"$n_candles\"></div>
+<div  id=\"progress\" class=\"progress\" style=\"width: 300px\">
+  <div id=\"pg_bar\" class=\"progress-bar progress-bar-striped bg-warning\" role=\"progressbar\" style=\"width: 0%\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"$n_candles\"></div>
 </div>
 <br>
 <button class=\"btn btn-warning btn-md\" onclick=\"window.location.reload(true);\" id=\"counter\"></button>
 <button class=\"btn btn-success btn-md\" id=\"play\" onclick=\"Play()\">Play</button>
 <button class=\"btn btn-md\" id=\"stop\" onclick=\"Stop()\">Stop</button>
+<button class=\"btn btn-danger btn-sm\" id=\"btn_end_session\" onclick=\"the_end_session()\">End Session</button>
 <br>
 <br>
 
@@ -69,9 +94,9 @@ echo "
 <button class=\"btn btn-outline-primary btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Light</button>
 <br>
 <br>
-<button class=\"btn btn-outline-success btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Fixed 1:1</button>
-<button class=\"btn btn-outline-warning btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Fixed 1:2</button>
-<button class=\"btn btn-outline-danger btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Manual</button>
+<button class=\"btn btn-outline-success btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"get_extract()\" >Fixed 1:1</button>
+<button class=\"btn btn-outline-warning btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"get_extract()\" >Fixed 1:2</button>
+<button class=\"btn btn-outline-danger btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"get_extract()\" >Manual</button>
 
 
 </div>

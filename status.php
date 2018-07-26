@@ -61,7 +61,7 @@ if($cumulative < 0) $badge_style_cumulative = "danger";
 echo "
 <div style=\"display:inline-block; width:60px\" class=\"badge badge-$badge_style_delta\">&Delta;: ".$delta."</div>
 <div style=\"display:inline-block; width:60px\" class=\"badge badge-success\">".$tick["period"]."</div>
-<div style=\"display:inline-block; width:160px\" class=\"badge badge-$badge_style_cumulative\">Total &Delta;: ".$cumulative."</div>
+<div style=\"display:inline-block; width:160px\" class=\"badge badge-$badge_style_cumulative\">Total: ".$cumulative."</div>
 <pre>
 ";
 ?>

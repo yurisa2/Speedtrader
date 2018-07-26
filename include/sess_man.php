@@ -23,7 +23,7 @@ class sess extends STdb
     $size = 60;
 
     $return = $this->obj_db->query("insert into sessions (session_id,start,size,time,symbol_id,period,style) values
-    ('$session_id','$start','$size','$time','$symbol_id','$period','\"candlesticks\"')");
+    ('$session_id','$start','$size','$time','$symbol_id','$period','candlesticks')");
   }
 
   function select_db_sess()
@@ -73,6 +73,19 @@ where deals.session_id = '$session_id'");
   {
     $session_id = session_id();
     $return = $this->obj_db->query("update sessions set style = '$style' where session_id = '$session_id'");
+  }
+
+  function insert_score_leaderboard($score)
+  {
+    $session_id = session_id();
+    $symbol_id = $this->select_db_sess()["symbol_id"];
+    $period = $this->select_db_sess()["period"];
+
+    $owner = "anonymous";
+
+
+    $return = $this->obj_db->query("insert into leaderboard (session_id,score,symbol_id,period,owner) values
+    ('$session_id','$score','$symbol_id','$period','$owner')");
   }
 
 }

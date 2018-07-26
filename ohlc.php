@@ -121,7 +121,10 @@ $plot->SetImageBorderType('none'); // Improves presentation in the manual
 $plot->SetDataType('data-data');
 $plot->SetDataValues($data);
 $plot->SetPlotType($plot_type);
+
+$plot->SetLegendPosition(0.5, 0.5, 'plot', 0.92, 0.15);
 $plot->SetLegend(array($delta,$cumulative));
+
 $plot->SetDataColors(array('red', 'DarkGreen', 'red', 'DarkGreen'));
 // $plot->SetXLabelAngle(90);
 // $plot->SetXLabelType('data', 0);
@@ -137,6 +140,9 @@ if (method_exists($plot, 'TuneYAutoRange'))
 $plot->TuneYAutoRange(0); // Suppress Y zero magnet (PHPlot >= 6.0.0)
 $plot->DrawGraph();
 
+$plot->SetLegendPosition(10000, 10000, 'plot',10000,10000);
+
+
 if($position != 0)
 {
 $plot->SetDataType('text-data');
@@ -145,6 +151,7 @@ $plot->SetLineStyles('dashed');
 $plot->SetLineWidths('3');
 $plot->SetDataColors(array($color_line));
 $plot->SetPlotType('lines');
+
 $plot->DrawGraph();
 
 $plot->SetDataType('text-data');
@@ -156,6 +163,8 @@ $plot->SetPlotType('lines');
 $plot->DrawGraph();
 
 }
+
+
 
 $plot->SetPlotAreaPixels(NULL, $plot_height, NULL, $plot_height * 0.8);
 

@@ -10,6 +10,7 @@ function setStart(start,size,speed) {
   increm = start;
   size_c = size;
   hide_commands();
+  document.getElementById('btn_end_session').style.visibility = 'false';
 
 }
 
@@ -17,7 +18,11 @@ function NewChart() {
   document.getElementById("chart").src = "ohlc.php?start=" + increm ;
   increm = increm + 1;
   document.getElementById("counter").innerHTML = (increm - start_js);
-  $(".progress .progress-bar").css('width', (increm - start_js));
+  // $(".progress .progress-bar").css('width', (increm - start_js));
+  $(".progress .progress-bar").attr('aria-valuenow', (increm - start_js)).css('width',(increm - start_js)+ "%");
+
+
+  document.getElementById('btn_end_session').style.visibility = 'visible';
 
   get_status(increm);
   if((increm - start_js) <= (size_c - 2))  get_trade_controls();
@@ -56,6 +61,8 @@ function hide_commands()
   document.getElementById('btn_close').style.visibility = 'hidden';
   document.getElementById('btn_ohlc').style.visibility = 'hidden';
   document.getElementById('btn_candlesticks').style.visibility = 'hidden';
+  document.getElementById('btn_end_session').style.visibility = 'hidden';
+
 }
 
 function show_commands()
@@ -71,6 +78,8 @@ function Rolling() {
 
 function get_new_session() {
 
+
+
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.open("GET", "operator.php?op=new_session", true);
   xmlhttp.send();
@@ -80,29 +89,37 @@ function get_new_session() {
 function the_end_session() {
   deal_close();
   Stop();
+  get_extract();
   document.getElementById('play').style.visibility = 'hidden';
   document.getElementById('stop').style.visibility = 'hidden';
   document.getElementById('btn_sell').style.visibility = 'hidden';
   document.getElementById('btn_buy').style.visibility = 'hidden';
   document.getElementById('btn_close').style.visibility = 'hidden';
+  document.getElementById('btn_end_session').style.visibility = 'hidden';
+  document.getElementById("counter").innerHTML = "New Game";
 
-  get_extract();
+  // document.getElementById('counter').style.visibility = 'hidden';
+  document.getElementById('pg_bar').style.visibility = 'hidden';
+  document.getElementById('progress').style.visibility = 'hidden';
+  document.getElementById('settings_panel').style.visibility = 'hidden';
+  document.getElementById('panel').style.visibility = 'hidden';
 
   get_new_session();
+  // location.reload(true);
 }
 
 function get_extract() {
 
-  // var xmlhttp3 = new XMLHttpRequest();
-  //
-  // xmlhttp3.onreadystatechange = function() {
-  //   if (this.readyState == 4 && this.status == 200) {
-  //     document.getElementById("panel").innerHTML = this.responseText;
-  //   }
-  // };
-  //
-  // xmlhttp3.open("GET", "extract.php", true);
-  // xmlhttp3.send();
+  var extract = new XMLHttpRequest();
+
+  extract.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("theater").innerHTML = this.responseText;
+    }
+  };
+
+  extract.open("GET", "extract.php", true);
+  extract.send();
 }
 
 function get_status(increm) {
