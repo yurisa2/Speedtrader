@@ -34,7 +34,7 @@ echo "
 <script src=\"https://code.jquery.com/jquery-3.3.1.min.js\" integrity=\"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\"			  crossorigin=\"anonymous\"></script><script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\" integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\" crossorigin=\"anonymous\"></script>
 <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js\" integrity=\"sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em\" crossorigin=\"anonymous\"></script>
 
- <script src=\"functions.js\"></script>
+ <script src=\"include/functions.js\"></script>
 </head>
 
 <body onload=\"setStart($start,$n_candles,$speed)\">
@@ -59,7 +59,22 @@ echo "
 <br>
 <button class=\"btn btn-warning btn-md\" id=\"btn_close\" onclick=\"deal_close()\" >Close Position</button>
 <br>
-<div id=\"panel\">PANEL</div>
+<div id=\"panel\"></div>
+<div id=\"settings_panel\">
+<button class=\"btn btn-outline-primary btn-sm\" id=\"btn_ohlc\" style=\"display:inline-block; height:35px\" onclick=\"change_style_ohlc()\" >OHLC</button>
+<button class=\"btn btn-outline-primary btn-sm\" id=\"btn_candlesticks\" style=\"display:inline-block; height:35px\" onclick=\"change_style_candlesticks()\" >Candlesticks</button>
+<button class=\"btn btn-outline-primary btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Fast</button>
+<button class=\"btn btn-outline-primary btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Normal</button>
+<button class=\"btn btn-outline-primary btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Dark</button>
+<button class=\"btn btn-outline-primary btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Light</button>
+<br>
+<br>
+<button class=\"btn btn-outline-success btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Fixed 1:1</button>
+<button class=\"btn btn-outline-warning btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Fixed 1:2</button>
+<button class=\"btn btn-outline-danger btn-sm\" style=\"display:inline-block; height:35px\" onclick=\"define_size()\" >Manual</button>
+
+
+</div>
 
 </center>
 </body>

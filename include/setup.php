@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$n_candles = 20;
-$speed = 800;
+$n_candles = 300;
+$speed = 500;
 
 
 $StopLoss = 10;
