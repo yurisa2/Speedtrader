@@ -12,8 +12,14 @@ $session = $sess->select_db_sess();
 
 // var_dump($session);
 
+
+
 $start = $sess->select_tick($session["start"])["time"];
 $start = date("Y-m-y H:i",$start);
+
+$tick = $sess->select_tick($session["start"]);
+$tick_size = $sess->select_symbol($tick['symbol_id']);
+$tick_size = $tick_size["tick_size"];
 
 $size = $session["size"];
 $symbol_id = $session["symbol_id"];
@@ -28,7 +34,7 @@ Symbol: ".$sess->select_symbol($symbol_id)["symbol"]."  <br>
 Name: ".$sess->select_symbol($symbol_id)["name"]." <br>
 Period: ".$period." <br>
 Tick size: ".$sess->select_symbol($symbol_id)["tick_size"]." <br>
-Session Score: ".$sess->calc_score()." <br>
+Session Score: ".$sess->calc_score()/$tick_size." <br>
 <pre>
 ";
 

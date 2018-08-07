@@ -11,6 +11,7 @@ function setStart(start,size,speed) {
   size_c = size;
   hide_commands();
   document.getElementById('btn_end_session').style.visibility = 'false';
+  document.getElementById('settings_panel').style.visibility = 'hidden';
 
 }
 

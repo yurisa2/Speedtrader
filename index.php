@@ -27,22 +27,22 @@ $sess = new sess;
 $session = $sess->select_db_sess();
 }
 
-if($session["period"] == M1)
+if($session["period"] == "M1")
 {
   $speed = $speed_base /2;
   $n_candles = $n_candles_base * 2;
 }
-if($session["period"] == M5)
+if($session["period"] == "M5")
 {
   $speed = $speed_base;
   $n_candles = $n_candles_base;
 }
-if($session["period"] == M10)
+if($session["period"] == "M10")
 {
   $speed = $speed_base * 2;
     $n_candles = $n_candles_base /2;
 }
-if($session["period"] == M15)
+if($session["period"] == "M15")
 {
   $speed = $speed_base * 3;
   $n_candles = $n_candles_base /3;

@@ -116,7 +116,7 @@ $plot->SetPrintImage(0);
 $plot->SetPlotAreaPixels(NULL, NULL, NULL, $plot_height * 0.75);
 
 $plot->SetImageBorderType('none'); // Improves presentation in the manual
-// $plot->SetTitle("Ladrao de Pensamentos\n@yurisa2");
+$plot->SetTitle("@yurisa2");
 // $plot->SetFont('x_label',"5",NULL,NULL);
 $plot->SetDataType('data-data');
 $plot->SetDataValues($data);
