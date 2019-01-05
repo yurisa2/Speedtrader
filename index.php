@@ -74,7 +74,7 @@ echo "
 <br>
 <button class=\"btn btn-warning btn-md\" onclick=\"window.location.reload(true);\" id=\"counter\"></button>
 <button class=\"btn btn-success btn-md\" id=\"play\" onclick=\"Play()\">Play</button>
-<button class=\"btn btn-md\" id=\"stop\" onclick=\"Stop()\">Stop</button>
+<button class=\"btn btn-md\" id=\"stop\" onclick=\"Stop()\">Pause</button>
 <button class=\"btn btn-danger btn-sm\" id=\"btn_end_session\" onclick=\"the_end_session()\">End Session</button>
 <br>
 <br>
