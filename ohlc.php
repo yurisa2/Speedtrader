@@ -3,7 +3,6 @@ require_once 'include/include.php';
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
-date_default_timezone_set('America/Sao_Paulo');
 
 $sess = new sess;
 $session = $sess->select_db_sess();

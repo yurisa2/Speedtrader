@@ -5,6 +5,7 @@ class sess extends STdb
   {
     parent::__construct();
     $this->session_id = session_id();
+    $this->size = 60;
   }
 
   function create_db_sess()
@@ -20,10 +21,8 @@ class sess extends STdb
     $symbol_id = $random["symbol_id"];
     $period = $random["period"];
 
-    $size = 60;
-
     $return = $this->obj_db->query("insert into sessions (session_id,start,size,time,symbol_id,period,style) values
-    ('$session_id','$start','$size','$time','$symbol_id','$period','candlesticks')");
+    ('$session_id','$start','$this->size','$time','$symbol_id','$period','candlesticks')");
   }
 
   function select_db_sess()
@@ -34,7 +33,6 @@ class sess extends STdb
     $return = $return->fetch(PDO::FETCH_ASSOC);
 
     return $return;
-
   }
 
   function calc_score()
